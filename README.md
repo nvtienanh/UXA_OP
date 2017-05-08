@@ -7,6 +7,11 @@ http://nimbro.net/OP/Doc/
 
 For online release documentation please refer to:
 
-http://nimbro.net/OP/Doc/html
+Main Pack: http://hitechmechatronics.com/uxa-op/main/
+Configuration Server: http://hitechmechatronics.com/uxa-op/server-config/
+Robot Control: http://hitechmechatronics.com/uxa-op/robotcontrol/
+Visualization Packages: http://hitechmechatronics.com/uxa-op/vis/
 
-![Analytics](https://ga-beacon.appspot.com/UA-85678594-1/chromeskel_a/readme?pixel)
+
+
+
