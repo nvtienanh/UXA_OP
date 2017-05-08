@@ -1,0 +1,904 @@
+<?xml version="1.0" ?>
+<robot name="nimbro_op" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:property name="pi" value="3.1415926535897931" />
+	<xacro:property name="deg" value="${pi/180}" />
+		<material name="black">
+			<color rgba="0.1 0.1 0.1 1" />
+		</material>
+		<material name="white">
+			<color rgba="0.8 0.8 0.8 1" />
+		</material>
+		<material name="clear">
+			<color rgba="1.0 1.0 1.0 0.0" />
+		</material>
+		<material name="orange">
+			<color rgba="${255/255} ${108/255} ${10/255} 1.0" />
+		</material>
+		<link name="trunk_link">
+			<inertial>				
+				<origin xyz="-0.005 -0.00000736 0.04997206" rpy="0 0 0" />
+				<mass value="2.5" />
+				<inertia ixx="0.03295785" ixy="-0.00001461" ixz="0.00376229"
+				iyy="0.03014955" iyz="-0.00000567" izz="0.01039631" />				
+			</inertial>
+			<visual>
+				<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/trunk_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/trunk_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="right_hip_yaw_link">
+			<inertial>
+				<origin xyz="-0.06619144 0 -0.01242002" rpy="0 0 0" />
+				<mass value="0.5" />
+				<inertia ixx="0.00054102" ixy="-0.00000002" ixz="0.00021081"
+				iyy="0.00075394" iyz="-0.00000002" izz="0.0004465" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_hip_yaw_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_hip_yaw_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_hip_yaw" type="continuous">			
+			<origin xyz="0 -0.057 -0.11248" rpy="0 0 0" />
+			<parent link="trunk_link" />
+			<child link="right_hip_yaw_link" />
+			<axis xyz="0 0 1" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="right_hip_roll_link">
+			<inertial>
+				<origin xyz="-0.00277154 -0.00294068 -0.02000261" rpy="0 0 0" />
+				<mass value="0.5" />				
+				<inertia ixx="0.00040951" ixy="-0.00000051" ixz="-0.0000231"
+				iyy="0.00037309" iyz="-0.00000404" izz="0.00028851" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_hip_roll_link.STL" />
+				</geometry>
+				<material name="black" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_hip_roll_link.STL" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_hip_roll" type="continuous">
+			<origin xyz="0 0.00257 0" rpy="0 0 0" />
+			<parent link="right_hip_yaw_link" />
+			<child link="right_hip_roll_link" />
+			<axis xyz="1 0 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="right_thigh_link">
+			<inertial>
+				<origin xyz="0.01351475 0 -0.117177084" rpy="0 0 0" />
+				<mass value="0.2" />				
+				<inertia ixx="0.00086927" ixy="0.0" ixz="-0.00004286" iyy="0.00076355" iyz="0" izz="0.00021719" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_thigh_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_thigh_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_hip_pitch" type="continuous">
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<parent link="right_hip_roll_link" />
+			<child link="right_thigh_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="right_shank_link">
+			<inertial>				
+				<origin xyz="0.00011984 -0.00214972 -0.06205455" rpy="0 0 0" />
+				<mass value="0.5" />				
+				<inertia ixx="0.00178356" ixy="0.00000195" ixz="0.00000109" iyy="0.00172349" iyz="-0.00000682" izz="0.00020309" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_shank_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_shank_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_knee_pitch" type="continuous">
+			<origin xyz="0 0.00309 -0.21" rpy="0 0 0" />
+			<parent link="right_thigh_link" />
+			<child link="right_shank_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-210P>
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="right_ankle_link">
+			<inertial>
+				<origin xyz="-0.00262 -0.00734 -0.02244" rpy="0 0 0" />
+				<mass value="0.5" />
+				<inertia ixx="0.00037659" ixy="0.00000044" ixz="0.00000867" iyy="0.00040768" iyz="-0.00000423" izz="0.00034365" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_ankle_link.STL" />
+				</geometry>
+				<material name="black" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_ankle_link.STL" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_ankle_pitch" type="continuous">
+			<origin xyz="0 -0.00304 -0.21" rpy="0 0 0" />			
+			<parent link="right_shank_link" />
+			<child link="right_ankle_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="right_foot_link">
+			<inertial>
+				<origin xyz="0.05358428 -0.00050578 -0.04190127" rpy="0 0 0" />				
+				<mass value="0.5" />
+				<inertia ixx="0.00065983" ixy="-0.00002894" ixz="0.00027412" iyy="0.00214467" iyz="-0.00000646" izz="0.00207273" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_foot_link.stl" />
+				</geometry>
+				<material name="black" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_foot_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_ankle_roll" type="continuous">
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<parent link="right_ankle_link" />
+			<child link="right_foot_link" />
+			<axis xyz="1 0 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="right_foot_plane_link">
+		</link>
+		<joint name="right_foot_plane_joint" type="fixed">
+			<origin xyz="0 0 -0.07245" rpy="0 0 0" />
+			<parent link="right_foot_link" />
+			<child link="right_foot_plane_link" />
+		</joint>
+
+		<link name="left_hip_yaw_link">
+			<inertial>
+				<origin xyz="-0.06619144 0 -0.01242002" rpy="0 0 0" />
+				<mass value="0.5" />
+				<inertia ixx="0.00054102" ixy="-0.00000002" ixz="0.00021081"
+				iyy="0.00075394" iyz="-0.00000002" izz="0.0004465" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_hip_yaw_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_hip_yaw_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_hip_yaw" type="continuous">
+			<origin xyz="0 0.057 -0.11248" rpy="0 0 0" />
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<parent link="trunk_link" />
+			<child link="left_hip_yaw_link" />
+			<axis xyz="0 0 1" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_hip_roll_link">
+			<inertial>
+				<origin xyz="-0.00277154 -0.00294068 -0.02000261" rpy="0 0 0" />
+				<mass value="0.5" />				
+				<inertia ixx="0.00040951" ixy="-0.00000051" ixz="-0.0000231"
+				iyy="0.00037309" iyz="-0.00000404" izz="0.00028851" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_hip_roll_link.STL" />
+				</geometry>
+				<material name="black" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_hip_roll_link.STL" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_hip_roll" type="continuous">
+			<origin xyz="0 -0.00257 0" rpy="0 0 0" />
+			<parent link="left_hip_yaw_link" />
+			<child link="left_hip_roll_link" />
+			<axis xyz="1 0 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_thigh_link">
+			<inertial>
+				<origin xyz="0.01351475 0 -0.117177084" rpy="0 0 0" />
+				<mass value="0.2" />				
+				<inertia ixx="0.00086927" ixy="0.0" ixz="-0.00004286" iyy="0.00076355" iyz="0" izz="0.00021719" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_thigh_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_thigh_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_hip_pitch" type="continuous">
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<parent link="left_hip_roll_link" />
+			<child link="left_thigh_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_shank_link">
+			<inertial>
+				<origin xyz="-0.00011984 0.00214792 -0.06205455" rpy="0 0 0" />
+				<mass value="0.5" />
+				<inertia ixx="0.00178356" ixy="0.00000195" ixz="-0.00000109" iyy="0.00172349" iyz="0.00000682" izz="0.00020309" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_shank_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_shank_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_knee_pitch" type="continuous">
+			<origin xyz="0 -0.00309 -0.21" rpy="0 0 0" />
+			<parent link="left_thigh_link" />
+			<child link="left_shank_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_ankle_link">
+			<inertial>
+				<origin xyz="0.00262362 -0.00033512 -0.02243854" rpy="0 0 0" />
+				<mass value="0.5" />
+				<inertia ixx="0.00037659" ixy="0.00000044" ixz="0.00000867" iyy="0.00040768" iyz="-0.00000423" izz="0.00034365" />				
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_ankle_link.STL" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_ankle_link.STL" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_ankle_pitch" type="continuous">
+			<origin xyz="0 0.00304 -0.21" rpy="0 0 0" />
+			<parent link="left_shank_link" />
+			<child link="left_ankle_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_foot_link">
+			<inertial>				
+				<origin xyz="0.05358428 -0.00050578 -0.04190127" rpy="0 0 0" />
+				<mass value="0.5" />
+				<inertia ixx="0.00065983" ixy="-0.00002894" ixz="0.00027412" iyy="0.00214467" iyz="-0.00000646" izz="0.00207273" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_foot_link.stl" />
+				</geometry>
+				<material name="black" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_foot_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_ankle_roll" type="continuous">
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<parent link="left_ankle_link" />
+			<child link="left_foot_link" />
+			<axis xyz="1 0 0" />
+			<!-- SAM-210P >
+			<limit effort="20.59" velocity="3.14" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_foot_plane_link">
+		</link>
+		<joint name="left_foot_plane_joint" type="fixed">
+			<origin xyz="0 0 -0.07245" rpy="0 0 0" />
+			<parent link="left_foot_link" />
+			<child link="left_foot_plane_link" />
+		</joint>
+
+		<link name="right_shoulder_pitch_link">
+			<inertial>				
+				<origin xyz="-0.00000163 -0.00799517 0" rpy="0 0 0" />
+				<mass value="0.1" />
+				<inertia ixx="0.00001543" ixy="0" ixz="0"
+				iyy="0.00004317" iyz="0" izz="0.000003859" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_shoulder_pitch_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_shoulder_pitch_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_shoulder_pitch" type="continuous">
+			<origin xyz="0 -0.09116 0.1905" rpy="0 0 0" />
+			<parent link="trunk_link" />
+			<child link="right_shoulder_pitch_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-100P >
+			<limit effort="9.81" velocity="6.81" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="right_upper_arm_link">
+			<inertial>				
+				<origin xyz="-0.0058694 0 -0.04909658" rpy="0 0 0 " />
+				<mass value="0.5" />
+				<inertia ixx="0.0006643" ixy="0" ixz="0.00006539"
+				iyy="0.00071563" iyz="0" izz="0.000141" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_shoulder_arm_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_shoulder_arm_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_shoulder_roll" type="continuous">
+			<origin xyz="0 -0.0285 0" rpy="0 0 0" />
+			<parent link="right_shoulder_pitch_link" />
+			<child link="right_upper_arm_link" />
+			<axis xyz="1 0 0" />
+			<!-- SAM-100P >
+			<limit effort="9.81" velocity="6.81" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="right_lower_arm_link">
+			<inertial>				
+				<origin xyz="-0.01102935 -0.00284483 -0.11596989" rpy="0 0 0" />
+				<mass value="0.5" />
+				<inertia ixx="0.00317274" ixy="0.00000365" ixz="-0.00001572"
+				iyy="0.00314138" iyz="0.000014695" izz="0.00016484" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_lower_arm_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/right_lower_arm_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="right_elbow_pitch" type="continuous">
+			<origin xyz="0 0 -0.1319" rpy="0 0 0" />
+			<parent link="right_upper_arm_link" />
+			<child link="right_lower_arm_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-30 >
+			<limit effort="2.75" velocity="9.42" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_shoulder_pitch_link">
+			<inertial>
+				<origin xyz="0.00000163 0.00799517 0" rpy="0 0 0" />
+				<mass value="0.1" />
+				<inertia ixx="0.00001543" ixy="0" ixz="0"
+				iyy="0.00004317" iyz="0" izz="0.000003859" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_shoulder_pitch_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_shoulder_pitch_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_shoulder_pitch" type="continuous">
+			<origin xyz="0 0.09116 0.1905"	rpy="0 0 0" />
+			<parent link="trunk_link" />
+			<child link="left_shoulder_pitch_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-100P >
+			<limit effort="9.81" velocity="6.81" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_upper_arm_link">
+			<inertial>
+				<origin xyz="0 -0.00587 -0.0491" rpy="0 0 0 " />
+				<mass value="0.5" />
+				<inertia ixx="0.00071563" ixy="0" ixz="0"
+				iyy="0.00066643" iyz="-0.00006539" izz="0.000141" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_upper_arm_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_upper_arm_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_shoulder_roll" type="continuous">
+			<origin xyz="0 0.0285 0" rpy="0 0 0" />
+			<parent link="left_shoulder_pitch_link" />
+			<child link="left_upper_arm_link" />
+			<axis xyz="1 0 0" />
+			<!-- SAM-100P >
+			<limit effort="9.81" velocity="6.81" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="left_lower_arm_link">
+			<inertial>
+				<origin xyz="-0.01102139 0.00283095 -0.11596545" rpy="0 0 0" />
+				<mass value="0.5" />
+				<inertia ixx="0.00190532" ixy="-0.00000222" ixz="-0.00000958"
+				iyy="0.0018868" iyz="-0.0000882" izz="0.000099" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_lower_arm_link.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/left_lower_arm_link.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="left_elbow_pitch" type="continuous">
+			<origin xyz="0 0 -0.1319" rpy="0 0 0" />
+			<parent link="left_upper_arm_link" />
+			<child link="left_lower_arm_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-30 >
+			<limit effort="2.75" velocity="9.42" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="neck_link">
+			<inertial>
+				<origin xyz="0 0 0.02062" rpy="0 0 0" />
+				<mass value="0.05" />
+				<inertia ixx="0.00001034" ixy="0.0" ixz="0.0"
+				iyy="0.00001035" iyz="0.0" izz="0.00000476" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/neck_link.STL" />
+				</geometry>
+				<material name="black" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/neck_link.STL" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="neck_yaw" type="continuous">
+			<origin xyz="0 0 0.224" rpy="0.0 0.0 0.0" />
+			<parent link="trunk_link" />
+			<child link="neck_link" />
+			<axis xyz="0 0 1" />
+			<!-- SAM-30 >
+			<limit effort="2.75" velocity="9.42" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="head_link">
+			<inertial>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<mass value="0.3" />
+				<inertia ixx="0.00009607" ixy="0" ixz="0"
+				iyy="0.00007498" iyz="0.00000007" izz="0.00009005" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0.05932" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/head_full.stl" />
+				</geometry>
+				<material name="white" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0.05932" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://nimbro_op_model/mesh/uxa_90/head_full.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<joint name="head_pitch" type="continuous">
+			<origin xyz="0 0 0.05735" rpy="0 0 0" />
+			<parent link="neck_link" />
+			<child link="head_link" />
+			<axis xyz="0 1 0" />
+			<!-- SAM-30 >
+			<limit effort="2.75" velocity="9.42" lower="-1.57" upper="-1.57" /-->
+		</joint>
+		<link name="camera_optical">			
+		</link>
+		<joint name="camera_joint" type="fixed">
+			<origin xyz="0 0 0.05932" rpy="0 0 0" />
+			<parent link="head_link" />
+			<child link="camera_optical" />
+			<axis xyz="0 0 0" />
+		</joint>
+
+
+		<!-- Transmissions -->
+		<transmission name="right_hip_yaw_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="right_hip_yaw" >
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_hip_yaw">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="right_hip_roll_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_hip_roll" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_hip_roll">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="right_hip_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_hip_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_hip_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="right_knee_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_knee_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_knee_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="right_ankle_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_ankle_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_ankle_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="right_ankle_roll_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_ankle_roll" >
+                <hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_ankle_roll">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_hip_yaw_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_hip_yaw" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_hip_yaw">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_hip_roll_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_hip_roll" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_hip_roll">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_hip_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_hip_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_hip_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_knee_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_knee_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_knee_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_ankle_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_ankle_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_ankle_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_ankle_roll_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_ankle_roll" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_ankle_roll">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="right_shoulder_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_shoulder_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_shoulder_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="right_shoulder_roll_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_shoulder_roll" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_shoulder_roll">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="right_elbow_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_elbow_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="right_elbow_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_shoulder_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_shoulder_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_shoulder_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_shoulder_roll_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_shoulder_roll" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_shoulder_roll">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="left_elbow_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_elbow_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="left_elbow_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="neck_yaw_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="neck_yaw" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="neck_yaw">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		<transmission name="head_pitch_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+            <joint name="head_pitch" >
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+            </joint>
+			<actuator name="head_pitch">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+
+		<!-- Gazebo configuration -->
+
+		<gazebo>
+			<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+				<robotNamespace>/nimbro_op</robotNamespace>
+			</plugin>
+		</gazebo>
+
+		<!-- Gazebo links -->
+		<gazebo reference="trunk_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="left_hip_yaw_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="left_hip_roll_link">
+			<material>Gazebo/Black</material>
+		</gazebo>
+		<gazebo reference="left_thigh_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="left_shank_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="left_ankle_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="left_foot_link">
+			<material>Gazebo/FlatBlack</material>
+			<kp>100000.0</kp>
+			<kd>100.0</kd>
+			<mu1>1.0</mu1>
+			<mu2>1.0</mu2>
+			<fdir1>1 0 0</fdir1>
+			<maxVel>1.0</maxVel>
+			<minDepth>0.00</minDepth>			
+		</gazebo>
+		<gazebo reference="left_shoulder_pitch_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="left_upper_arm_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="left_lower_arm_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="right_hip_yaw_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="right_hip_roll_link">
+			<material>Gazebo/Black</material>
+		</gazebo>
+		<gazebo reference="right_thigh_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="right_shank_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="right_ankle_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="right_foot_link">
+			<material>Gazebo/FlatBlack</material>
+			<kp>100000.0</kp>
+			<kd>100.0</kd>
+			<mu1>1.0</mu1>
+			<mu2>1.0</mu2>
+			<fdir1>1 0 0</fdir1>
+			<maxVel>1.0</maxVel>
+			<minDepth>0.00</minDepth>						
+		</gazebo>
+		<gazebo reference="right_shoulder_pitch_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="right_upper_arm_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="right_lower_arm_link">
+			<material>Gazebo/White</material>
+		</gazebo>
+		<gazebo reference="neck_link">
+			<material>Gazebo/Black</material>
+		</gazebo>
+</robot>

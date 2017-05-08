@@ -1,0 +1,196 @@
+header:
+  name: sitdown
+  preState: ""
+  playState: ""
+  postState: ""
+  pid_enabled: 0
+rules:
+  []
+motion:
+  - frameName: Frame 1
+    duration: 1
+    support: ""
+    roll: 0
+    pitch: 0
+    yaw: 0
+    joints:
+      left_hip_yaw:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      left_hip_roll:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      left_hip_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      left_knee_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      left_ankle_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      left_ankle_roll:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      left_shoulder_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      left_shoulder_roll:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      left_elbow_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      neck_yaw:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      head_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_hip_yaw:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_hip_roll:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_hip_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_knee_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_ankle_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_ankle_roll:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_shoulder_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_shoulder_roll:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0
+      right_elbow_pitch:
+        position: 0
+        effort: 0
+        velocity: 0
+        p_gain: 0
+        i_gain: 0
+        d_gain: 0
+        limit: 2.673007000463362e-316
+        gain_select: 0

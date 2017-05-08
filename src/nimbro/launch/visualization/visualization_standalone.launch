@@ -1,0 +1,5 @@
+<launch rosmon-name="rosmon_visualization">
+	<include file="$(find launch)/hardware/robot_common_vis.launch" />
+	
+	<include file="$(find launch)/visualization/visualization.launch" />
+</launch>
